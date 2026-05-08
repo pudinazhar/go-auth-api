@@ -1,0 +1,14 @@
+POST : http://localhost:8080/api/v1/register
+{
+  "name": "Pudin Saepudin",
+  "email": "pudin@email.id",
+  "phone": "08123456789",
+  "password": "12345678",
+  "role": "Admin"
+}
+
+POST : http://localhost:8080/api/v1/login
+{
+  "email": "pudin@email.id",
+  "password": "12345678"
+}

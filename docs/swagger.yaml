@@ -1,0 +1,226 @@
+basePath: /api/v1
+definitions:
+  model.LoginInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  model.RegisterInput:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        minLength: 6
+        type: string
+      phone:
+        type: string
+      role:
+        enum:
+        - Admin
+        - Guest
+        type: string
+    required:
+    - email
+    - name
+    - password
+    - phone
+    - role
+    type: object
+  utils.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@example.com
+    name: API Support
+  description: API Documentation for Golang Authentication System.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Go Auth API
+  version: "1.0"
+paths:
+  /forgot-password:
+    post:
+      consumes:
+      - application/json
+      description: Request a password reset token via email
+      parameters:
+      - description: User Email
+        in: body
+        name: request
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Forgot Password
+      tags:
+      - Authentication
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user and return tokens
+      parameters:
+      - description: Login User
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Login user
+      tags:
+      - Authentication
+  /logout:
+    post:
+      consumes:
+      - application/json
+      description: Revoke refresh token and logout
+      parameters:
+      - description: Refresh Token
+        in: body
+        name: request
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - BearerAuth: []
+      summary: Logout user
+      tags:
+      - Authentication
+  /profile:
+    get:
+      consumes:
+      - application/json
+      description: Get current logged in user profile information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.Response'
+      security:
+      - BearerAuth: []
+      summary: Get user profile
+      tags:
+      - User
+  /refresh:
+    post:
+      consumes:
+      - application/json
+      description: Get a new access token using a valid refresh token
+      parameters:
+      - description: Refresh Token
+        in: body
+        name: request
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Refresh Access Token
+      tags:
+      - Authentication
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account with name, email, phone, password, and
+        role
+      parameters:
+      - description: Register User
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.RegisterInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/utils.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Register a new user
+      tags:
+      - Authentication
+  /reset-password:
+    post:
+      consumes:
+      - application/json
+      description: Reset password using the reset token
+      parameters:
+      - description: Token and New Password
+        in: body
+        name: request
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.Response'
+      summary: Reset Password
+      tags:
+      - Authentication
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
