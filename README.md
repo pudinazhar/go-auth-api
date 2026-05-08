@@ -75,6 +75,11 @@ Setelah aplikasi berjalan, Anda dapat mengakses dokumentasi interaktif (Swagger)
 ```
 http://localhost:8080/swagger/index.html
 ```
+Perbaharui Doc Dokumentasi
+```
+swag init -g cmd/main.go
+```
+
 ## 🧪 Menjalankan Unit Test
 ```
 go test ./utils -v
@@ -84,3 +89,13 @@ go test ./utils -v
 - Password di-hash menggunakan bcrypt dengan cost default.
 - Header Authorization menggunakan format: Bearer <token>.
 - Refresh Token di-rotate setiap kali digunakan untuk mencegah pembajakan sesi.
+
+## Error
+Jika mengalami error saat menggunakan docker, itu karena mysql membutuhkan waktu beberapa saat untuk hidup, kita cukup melakukan perintah ini saja,
+```
+docker-compose start app
+```
+
+## Kontak Saya
+- [Telegram](https://t.me/pudin_ira)
+- [Website](https://italazhar.com)

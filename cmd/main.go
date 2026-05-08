@@ -49,6 +49,7 @@ func main() {
 	// 3. Setup Framework & Routes
 	r := gin.Default()
 
+	r.SetTrustedProxies(nil)
 	// Panggil fungsi route yang kita buat di folder routes
 	routes.SetupRouter(r, authController)
 

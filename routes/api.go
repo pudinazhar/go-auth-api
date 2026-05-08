@@ -5,8 +5,8 @@ import (
 	_ "go-auth-api/docs"
 	"go-auth-api/middleware"
 
-	"github.com/gin-gonic/gin"          // Kita beri alias 'swagFiles'
-	swagFiles "github.com/swaggo/files" // Kita beri alias 'swagFiles'
+	"github.com/gin-gonic/gin"
+	swagFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
