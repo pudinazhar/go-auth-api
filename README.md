@@ -38,12 +38,12 @@ API Otentikasi yang dibangun menggunakan **Golang**, **Gin Framework**, dan **GO
 .
 ```
 
-## Cara Menjalankan Project
+## 🚀 Cara Menjalankan Project
 1. Clone Project
 ```
-git clone [https://github.com/username/nama-repo.git](https://github.com/username/nama-repo.git)
+git clone https://github.com/pudinazhar/go-auth-api.git
 ```
-cd nama-repo
+cd go-auth-api
 
 2. Install Dependensi
 ```
@@ -70,7 +70,7 @@ go run cmd/main.go
 ```
 Database akan otomatis ter-migrasi saat aplikasi dijalankan.
 
-## Dokumentasi API
+## 📖 Dokumentasi API
 Setelah aplikasi berjalan, Anda dapat mengakses dokumentasi interaktif (Swagger) di:
 ```
 http://localhost:8080/swagger/index.html
@@ -80,7 +80,7 @@ http://localhost:8080/swagger/index.html
 go test ./utils -v
 ```
 
-## Keamanan
-Password di-hash menggunakan bcrypt dengan cost default.
-Header Authorization menggunakan format: Bearer <token>.
-Refresh Token di-rotate setiap kali digunakan untuk mencegah pembajakan sesi.
+## 🔐 Keamanan
+- Password di-hash menggunakan bcrypt dengan cost default.
+- Header Authorization menggunakan format: Bearer <token>.
+- Refresh Token di-rotate setiap kali digunakan untuk mencegah pembajakan sesi.
